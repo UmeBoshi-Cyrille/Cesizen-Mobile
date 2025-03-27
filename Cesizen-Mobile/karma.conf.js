@@ -1,9 +1,12 @@
-import { join } from 'path';
+import path from 'path';
 import karmaJasmine from 'karma-jasmine';
 import karmaChromeLauncher from 'karma-chrome-launcher';
 import karmaJasmineHtmlReporter from 'karma-jasmine-html-reporter';
 import karmaCoverage from 'karma-coverage';
 import angularPlugin from '@angular-devkit/build-angular/plugins/karma.js';
+import { fileURLToPath } from 'url';
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 export default function (config) {
   config.set({
@@ -29,7 +32,7 @@ export default function (config) {
       suppressAll: true // removes the duplicated traces
     },
     coverageReporter: {
-      dir: join(__dirname, './coverage/'),
+      dir: path.join(__dirname, './coverage/'),
       subdir: '.',
       reporters: [
         { type: 'html' },
