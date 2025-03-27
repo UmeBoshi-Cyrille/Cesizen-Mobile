@@ -2,18 +2,35 @@ import { defineConfig } from "eslint/config";
 import globals from "globals";
 import js from "@eslint/js";
 import tseslint from "typescript-eslint";
+import jasminePlugin from "eslint-plugin-jasmine";
 
 
 export default defineConfig([
   js.configs.recommended,
   tseslint.configs.recommended,
+  {
+    files: ["**/*.spec.ts"],
+    plugins: {
+      jasmine: jasminePlugin
+    },
+    languageOptions: {
+      globals: {
+        ...globals.jasmine,
+        ...globals.node
+      }
+    },
+    rules: {
+      "jasmine/no-focused-tests": "error",
+      "jasmine/no-suite-dupes": ["error", "branch"]
+    }
+  },
   { files: ["**/*.{js,mjs,cjs,ts}"] },
   {
     files: ["**/*.{js,mjs,cjs,ts}"],
     languageOptions: {
       globals: {
         ...globals.browser,
-        ...global.node,
+        ...globals.node,
         AudioWorkletGlobalScope: "readonly"
       }
     }
