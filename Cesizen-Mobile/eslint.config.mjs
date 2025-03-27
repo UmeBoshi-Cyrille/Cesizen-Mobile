@@ -11,6 +11,7 @@ export default defineConfig([
       globals: {
         ...globals.browser,
         AudioWorkletGlobalScope: "readonly"
+      }
     }
   },
   { files: ["**/*.{js,mjs,cjs,ts}"], plugins: { js }, extends: ["js/recommended"] },
