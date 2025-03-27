@@ -17,4 +17,11 @@ export default defineConfig([
   },
   { files: ["**/*.{js,mjs,cjs,ts}"], plugins: { js }, extends: ["js/recommended"] },
   tseslint.configs.recommended,
+  {
+    files: ["karma.conf.js"],
+    rules: {
+      "@typescript-eslint/no-require-imports": "off", // Allow require()
+      "no-undef": "off" // Skip undefined checks for Node.js globals
+    }
+  }
 ]);
