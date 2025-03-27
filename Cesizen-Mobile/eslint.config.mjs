@@ -10,6 +10,7 @@ export default defineConfig([
     files: ["**/*.{js,mjs,cjs,ts}"], languageOptions: {
       globals: {
         ...globals.browser,
+        ...global.node,
         AudioWorkletGlobalScope: "readonly"
       }
     }

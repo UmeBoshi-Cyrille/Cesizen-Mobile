@@ -1,13 +1,20 @@
-﻿module.exports = function (config) {
+import { join } from 'path';
+import karmaJasmine from 'karma-jasmine';
+import karmaChromeLauncher from 'karma-chrome-launcher';
+import karmaJasmineHtmlReporter from 'karma-jasmine-html-reporter';
+import karmaCoverage from 'karma-coverage';
+import angularPlugin from '@angular-devkit/build-angular/plugins/karma';
+
+export default function (config) {
   config.set({
     basePath: '',
     frameworks: ['jasmine', '@angular-devkit/build-angular'],
     plugins: [
-      require('karma-jasmine'),
-      require('karma-chrome-launcher'),
-      require('karma-jasmine-html-reporter'),
-      require('karma-coverage'),
-      require('@angular-devkit/build-angular/plugins/karma')
+      karmaJasmine,
+      karmaChromeLauncher,
+      karmaJasmineHtmlReporter,
+      karmaCoverage,
+      angularPlugin,
     ],
     client: {
       jasmine: {
