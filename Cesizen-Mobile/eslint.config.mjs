@@ -5,9 +5,12 @@ import tseslint from "typescript-eslint";
 
 
 export default defineConfig([
+  js.configs.recommended,
+  tseslint.configs.recommended,
   { files: ["**/*.{js,mjs,cjs,ts}"] },
   {
-    files: ["**/*.{js,mjs,cjs,ts}"], languageOptions: {
+    files: ["**/*.{js,mjs,cjs,ts}"],
+    languageOptions: {
       globals: {
         ...globals.browser,
         ...global.node,
@@ -16,7 +19,6 @@ export default defineConfig([
     }
   },
   { files: ["**/*.{js,mjs,cjs,ts}"], plugins: { js }, extends: ["js/recommended"] },
-  tseslint.configs.recommended,
   {
     files: ["karma.conf.js"],
     rules: {
