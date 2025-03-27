@@ -3,7 +3,7 @@ import karmaJasmine from 'karma-jasmine';
 import karmaChromeLauncher from 'karma-chrome-launcher';
 import karmaJasmineHtmlReporter from 'karma-jasmine-html-reporter';
 import karmaCoverage from 'karma-coverage';
-import angularPlugin from '@angular/build/plugins/karma';  // New Angular 19 path
+import { default as angularPlugin } from '@angular/build/angular/src/tools/karma/index.js';
 
 
 export default function (config) {
