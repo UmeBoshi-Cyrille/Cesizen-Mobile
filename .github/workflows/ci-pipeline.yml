@@ -1,0 +1,48 @@
+# Multi-stage build reduces final image size
+name: CesiZen-Client - CI Pipeline
+
+on:
+  push:
+    branches: [develop, pipeline]
+  pull_request:
+    branches: [develop, main]
+
+jobs:
+  test:
+    name: Install dependencies - Run Tests
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [20]
+
+    defaults:
+      run:
+        working-directory: ./Cesizen-Mobile
+
+    steps:
+      # Step 1: Checkout Code
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      # Step 2: Setup Node with Autot Cache for Node-modules
+      - name: Setup Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: "npm"
+          cache-dependency-path: ./Cesizen-Mobile
+      # Step 3: Dependencies Installation
+      - name: Dependencies Installation
+        run: npm ci
+      # Step 4: Quality : Lint
+      - name: lint Code
+        run: npm run lint
+      # Step 5: Unit Test
+      - name: Run Tests
+        run: npm run test:ci
+      # Step 3: Build Project
+      - name: Build
+        run: npm run build -- --configuration production
+
