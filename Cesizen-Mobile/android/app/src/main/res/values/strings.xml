@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">cesizen-mobile</string>
+    <string name="title_activity_main">cesizen-mobile</string>
+    <string name="package_name">com.cesizen.mobile.app</string>
+    <string name="custom_url_scheme">com.cesizen.mobile.app</string>
+</resources>
