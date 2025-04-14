@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+
 import { AppNavigationComponent } from './app-navigation.component';
-import { provideAnimations } from '@angular/platform-browser/animations';
 
 describe('AppNavigationComponent', () => {
   let component: AppNavigationComponent;
@@ -8,20 +8,16 @@ describe('AppNavigationComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [
-        AppNavigationComponent // Import standalone component directly
-      ],
-      providers: [
-        provideAnimations() // Required for Angular Material animations
-      ]
-    }).compileComponents();
+      imports: [AppNavigationComponent]
+    })
+      .compileComponents();
 
     fixture = TestBed.createComponent(AppNavigationComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('should compile', () => {
     expect(component).toBeTruthy();
   });
 });

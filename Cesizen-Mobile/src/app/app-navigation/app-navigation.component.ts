@@ -10,7 +10,8 @@ import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 
 @Component({
-  selector: 'app-app-navigation',
+  selector: 'app-navigation',
+  standalone: true,
   templateUrl: './app-navigation.component.html',
   styleUrl: './app-navigation.component.css',
   imports: [
