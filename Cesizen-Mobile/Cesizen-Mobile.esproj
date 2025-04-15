@@ -8,9 +8,6 @@
     <BuildOutputFolder>$(MSBuildProjectDirectory)\dist\Cesizen-Mobile\browser\</BuildOutputFolder>
   </PropertyGroup>
   <ItemGroup>
-    <Folder Include="src\app\core\interceptors\" />
-    <Folder Include="src\app\core\models\" />
-    <Folder Include="src\app\shared\components\" />
-    <Folder Include="src\app\shared\pipes\" />
+    <Folder Include="src\app\pages\" />
   </ItemGroup>
 </Project>
