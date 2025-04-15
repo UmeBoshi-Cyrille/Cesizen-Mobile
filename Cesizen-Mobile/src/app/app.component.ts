@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
-import { LoginComponent } from './features/login.component/login.component';
+import { AppNavigationComponent } from './components/app-navigation/app-navigation.component';
+
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [LoginComponent],
+  imports: [AppNavigationComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
