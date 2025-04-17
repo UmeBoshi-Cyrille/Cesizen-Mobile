@@ -4,8 +4,9 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
-import { Credentials } from '../../core/models/user/credentials';
-import { LoginService } from '../../core/services/login/login.service';
+import { LoginService } from '@services/login/login.service';
+import { Credentials } from '@models/user/credentials';
+
 
 
 @Component({
