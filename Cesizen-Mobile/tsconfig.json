@@ -21,10 +21,11 @@
     "paths": {
       "@components/*": [ "app/components/*" ],
       "@pages/*": [ "app/pages/*" ],
-      "@services/*": [ "app/core/services/*" ],
-      "@environments/*": [ "app/core/environments/*" ],
-      "@interceptors/*": [ "app/core/interceptors/*" ],
-      "@models/*": [ "app/core/models/*" ]
+      "@services/*": [ "services/*" ],
+      "@environments/*": [ "common/environments/*" ],
+      "@interceptors/*": [ "common/interceptors/*" ],
+      "@directives/*": [ "common/directives/*" ],
+      "@models/*": [ "models/*" ]
     }
   },
   "angularCompilerOptions": {

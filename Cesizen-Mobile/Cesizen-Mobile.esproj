@@ -8,10 +8,8 @@
     <BuildOutputFolder>$(MSBuildProjectDirectory)\dist\Cesizen-Mobile\browser\</BuildOutputFolder>
   </PropertyGroup>
   <ItemGroup>
-    <None Remove="src\app\shared\**" />
-    <TypeScriptConfiguration Remove="src\app\shared\**" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="src\app\core\interceptors\" />
+    <Folder Include="src\app\components\" />
+    <Folder Include="src\app\partials\" />
+    <Folder Include="src\common\directives\" />
   </ItemGroup>
 </Project>
