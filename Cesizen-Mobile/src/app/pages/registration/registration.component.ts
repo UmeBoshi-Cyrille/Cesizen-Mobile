@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { RegistrationService } from '../../core/services/registration/registration.service';
+import { RegistrationService } from '@services/registration/registration.service';
 
 
 @Component({
