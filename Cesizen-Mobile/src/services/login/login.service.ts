@@ -2,9 +2,9 @@ import { Injectable } from '@angular/core';
 
 import { HttpClient } from '@angular/common/http';
 import { map, Observable } from 'rxjs';
-import { environment } from '@environments/environment';
-import { Credentials } from '@models/user/credentials';
-import { UserDataStorage } from '@models/user/user-data-storage';
+import { environment } from 'common/environments/environment';
+import { Credentials } from 'models/user/credentials';
+import { UserDataStorage } from 'models/user/user-data-storage';
 
 @Injectable({
   providedIn: 'root'
