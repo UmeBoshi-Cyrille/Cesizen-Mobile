@@ -1,11 +1,12 @@
-import { Routes } from '@angular/router';
-import { InformationComponent } from './components/information/information.component';
-import { ExerciseComponent } from './components/exercise/exercise.component';
-import { AboutComponent } from './components/about/about.component';
-import { HomeComponent } from './components/home/home.component';
-import { ErrorComponent } from './components/error/error.component';
-import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { LoginComponent } from './components/login/login.component';
+import { Routes } from "@angular/router";
+import { AboutComponent } from "@pages/about/about.component";
+import { DashboardComponent } from "@pages/dashboard/dashboard.component";
+import { ErrorComponent } from "@pages/error/error.component";
+import { ExerciseComponent } from "@pages/exercise/exercise.component";
+import { HomeComponent } from "@pages/home/home.component";
+import { InformationComponent } from "@pages/information/information.component";
+import { LoginComponent } from "@pages/login/login.component";
+
 
 export const routes: Routes = [
   {

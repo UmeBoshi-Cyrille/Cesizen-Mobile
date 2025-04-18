@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AppNavigationComponent } from './components/app-navigation/app-navigation.component';
+import { AppNavigationComponent } from './pages/app-navigation/app-navigation.component';
 
 
 @Component({
