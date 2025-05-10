@@ -3,6 +3,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { EmailVerifiedComponent } from './email-verified.component';
 import { provideHttpClient } from '@angular/common/http';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
+import { provideRouter } from '@angular/router';
 
 describe('EmailVerifiedComponent', () => {
   let component: EmailVerifiedComponent;
@@ -12,6 +13,7 @@ describe('EmailVerifiedComponent', () => {
     await TestBed.configureTestingModule({
       imports: [EmailVerifiedComponent],
       providers: [
+        provideRouter([]),
         provideHttpClient(),
         provideHttpClientTesting()// Provide HttpClient
       ],

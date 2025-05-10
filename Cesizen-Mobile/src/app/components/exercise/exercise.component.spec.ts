@@ -3,6 +3,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ExerciseComponent } from './exercise.component';
 import { provideHttpClient } from '@angular/common/http';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
+import { provideRouter } from '@angular/router';
 
 describe('ExerciseComponent', () => {
   let component: ExerciseComponent;
@@ -12,6 +13,7 @@ describe('ExerciseComponent', () => {
     await TestBed.configureTestingModule({
       imports: [ExerciseComponent],
       providers: [
+        provideRouter([]),
         provideHttpClient(),
         provideHttpClientTesting(),// Provide HttpClient
       ],

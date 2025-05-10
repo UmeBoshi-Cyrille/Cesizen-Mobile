@@ -3,6 +3,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ForgetPasswordResponseComponent } from './forget-password-response.component';
 import { provideHttpClient } from '@angular/common/http';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
+import { provideRouter } from '@angular/router';
 
 describe('ForgetPasswordResponseComponent', () => {
   let component: ForgetPasswordResponseComponent;
@@ -12,6 +13,7 @@ describe('ForgetPasswordResponseComponent', () => {
     await TestBed.configureTestingModule({
       imports: [ForgetPasswordResponseComponent],
       providers: [
+        provideRouter([]),
         provideHttpClient(),
         provideHttpClientTesting()// Provide HttpClient
       ],

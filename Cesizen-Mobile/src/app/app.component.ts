@@ -5,7 +5,6 @@ import { CommonModule } from '@angular/common';
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { AuthService } from './core/services/auth/auth.service';
 import { RefreshTokenService } from './core/services/login/refresh-token.service';
-import { AppNavigationComponent } from './components/app-navigation/app-navigation.component';
 import { NavMobileComponent } from './components/partials/nav-mobile/nav-mobile.component';
 
 
@@ -13,7 +12,6 @@ import { NavMobileComponent } from './components/partials/nav-mobile/nav-mobile.
   selector: 'app-root',
   standalone: true,
   imports: [
-    AppNavigationComponent,
     RouterOutlet,
     NavMobileComponent,
     CommonModule],

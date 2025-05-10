@@ -3,12 +3,14 @@ import { ExercisesComponent } from './exercises.component';
 import { provideHttpClient } from '@angular/common/http';
 import { ExerciseQueryService } from '@services/exercise/exercise-query.service';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
+import { provideRouter } from '@angular/router';
 
 describe('ExercisesComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [ExercisesComponent],
       providers: [
+        provideRouter([]),
         provideHttpClient(),
         provideHttpClientTesting(),// Provide HttpClient
         ExerciseQueryService, // Provide any services used by the component

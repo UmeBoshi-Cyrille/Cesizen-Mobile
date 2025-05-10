@@ -3,6 +3,7 @@ import { provideHttpClient } from '@angular/common/http';
 import { ArticleComponent } from './article.component';
 import { ArticleQueryService } from '@services/article/article-query.service';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
+import { provideRouter } from '@angular/router';
 
 describe('ArticleComponent', () => {
   let component: ArticleComponent;
@@ -12,6 +13,7 @@ describe('ArticleComponent', () => {
     await TestBed.configureTestingModule({
       imports: [ArticleComponent],
       providers: [
+        provideRouter([]),
         provideHttpClient(),
         provideHttpClientTesting(),// Provide HttpClient
         ArticleQueryService, // Provide any services used by the component
