@@ -11,7 +11,4 @@
     <None Remove="src\app\shared\**" />
     <TypeScriptConfiguration Remove="src\app\shared\**" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="src\app\core\interceptors\" />
-  </ItemGroup>
 </Project>

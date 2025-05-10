@@ -1,0 +1,276 @@
+/* You can add global styles to this file, and also import other style files */
+@import "tailwindcss";
+@import "app/abstract-styles/_mixins.scss";
+
+* {
+  font-family: $font-primary;
+}
+
+.font-seconde {
+  font-family: $font-seconde;
+  //title, h1, etc..
+}
+
+//HEADER
+header {
+  position: fixed;
+  z-index: 2;
+  top: 10px;
+  left: 10px;
+}
+
+main {
+  @include main-center;
+}
+
+.main-content {
+  background-color: $secondary-color;
+  position: relative;
+  top: 0;
+}
+
+//yellow-box
+.main-box {
+  @include main-center(12%, 100vh);
+  background-color: $secondary-color;
+}
+
+.h1-primary {
+  @include title-h1(2rem auto);
+}
+
+.h1-articles-title {
+  @include title-h1(1rem auto);
+  width: 250px;
+  background-color: white;
+  position: absolute;
+  margin-top: 1rem;
+  margin-left: 2rem;
+  border: none;
+  font-size: 1.2rem;
+}
+
+.h1-form-title {
+  @include title-h1(1.2rem auto);
+  font-size: 1.2rem;
+}
+
+.h1-articleByCategory-title {
+  @include title-h1(1.2rem auto);
+  width: 250px;
+  font-size: 1rem;
+}
+
+.box-div-article {
+  @include box-div;
+  width: 80%;
+  min-height: 80vh;
+}
+
+.box-div-articles {
+  width: 100%;
+  height: auto;
+  background-color: white;
+  border-radius: 5px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  padding: 1rem 1rem;
+  margin: 1.5rem auto;
+}
+
+.box-div-connexion {
+  @include box-div;
+}
+
+.box-div {
+  @include box-div;
+  @include flex-center;
+}
+
+.content-div {
+  border: solid 1px;
+  padding-top: 10px;
+  padding-bottom: 70px;
+  padding-left: 120px;
+  padding-right: 120px;
+  margin-left: 7%;
+  margin-right: 7%;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  text-align: start;
+  border-radius: 3px;
+}
+
+.exercise-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 60%;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 12px;
+  margin-bottom: 12px;
+  box-shadow: 0 2px 6px rgb(128, 128, 128);
+  margin: 2rem auto;
+}
+
+
+.B-btn {
+  @include black-button;
+}
+
+  .B-btn:hover {
+    background-color: $btn-hover-color;
+  }
+
+.toast {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 350px;
+  min-height: 40px;
+  max-height: 100px; /* Set your desired maximum height */
+  overflow-y: auto;
+  word-break: break-word;
+  background-color: rgb(176, 252, 231, 0.3);
+  border: #287e5e dashed;
+  color: #287e5e;
+  padding: 10px 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  transition: opacity 0.3s ease-in-out;
+}
+
+  .toast.success {
+    background-color: rgb(176, 252, 231, 0.5);
+    border: #287e5e dashed;
+    color: #287e5e;
+  }
+
+  .toast.error {
+    background-color: rgb(255, 197, 197, 0.50);
+    border: #cb5d52 dashed;
+    color: #cb5d52;
+  }
+
+  .toast.warning {
+    background-color: rgb(252, 220, 176, 0.50);
+    border: #de9f52 dashed;
+    color: #de9f52;
+  }
+
+.toast-title {
+  font-size: 3em;
+  font-weight: bold;
+  margin-bottom: 4px;
+  margin-bottom: 10px;
+  padding-bottom: 3px;
+  border-bottom: solid 1px
+}
+
+.toast-message {
+  font-size: 0.98em;
+}
+
+.custom-select-panel {
+  background: #fff !important;
+  color: #222 !important;
+  // Add any other styling you want
+}
+
+@media (max-width: 900px) {
+  .main-box {
+    background-color: white;
+    margin: 0;
+  }
+
+  .box-div {
+    @include box-div;
+    @include flex-center;
+    background-color: white;
+    box-shadow: none;
+    width: 100%;
+  }
+
+  .h1-form-title {
+    @include title-h1(1rem auto);
+    font-size: 1rem;
+    width: 200px;
+  }
+
+  .h1-articleByCategory-title {
+    width: 150px;
+    font-size: 0.7rem;
+  }
+
+  .box-div-connexion {
+    box-shadow: none;
+    width: 100%;
+  }
+}
+
+@media (max-width: 700px) {
+  main {
+    @include main-center(auto, auto);
+    width: 100%;
+    justify-content: center;
+  }
+
+  .main-box {
+    width: 100%;
+    padding: 2% 5%;
+  }
+
+  .content-div {
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 0px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 0;
+    width: 100%;
+    border: none;
+  }
+
+  footer {
+    display: none;
+  }
+
+  .box-div-article {
+    width: 100%;
+    background-color: white;
+    border-radius: 0;
+    box-shadow: none;
+    padding: 1rem 1rem;
+    margin: auto auto;
+  }
+
+  .h1-articles-title {
+    position: relative;
+    text-align: center;
+    margin: 0 auto;
+    border: solid 1px #abaaa7;
+  }
+
+  .h1-articleByCategory-title {
+    width: 250px;
+    font-size: 1rem;
+  }
+
+  .h1-form-title {
+    @include title-h1(1rem auto);
+    font-size: 1rem;
+    width: 180px;
+  }
+
+  .exercise-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 5px;
+    margin-bottom: 7rem;
+    box-shadow: 0 2px 6px rgb(128, 128, 128);
+  }
+}

@@ -1,14 +1,21 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { catchError, Observable, throwError } from 'rxjs';
+import { environment } from '@environments/environment';
+import { RegistrationData } from '@models/login/registration-data.interface';
 
 @Injectable({
   providedIn: 'root'
 })
 export class RegistrationService {
-  private registerUrl = 'https://localhost:5001/api/registration/register';
+  private registerUrl = environment.registrationUrl;
   constructor(private http: HttpClient) { }
-  registerUser(userData: unknown): Observable<unknown> {
-    return this.http.post(this.registerUrl, userData);
+
+  registerUser(userData: RegistrationData): Observable<unknown> {
+    return this.http.post(this.registerUrl, userData).pipe(
+      catchError((error: HttpErrorResponse) => {
+        return throwError(() => error);
+      })
+    );;
   }
 }

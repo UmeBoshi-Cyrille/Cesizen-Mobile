@@ -24,7 +24,8 @@
       "@services/*": [ "app/core/services/*" ],
       "@environments/*": [ "app/core/environments/*" ],
       "@interceptors/*": [ "app/core/interceptors/*" ],
-      "@models/*": [ "app/core/models/*" ]
+      "@models/*": [ "app/core/models/*" ],
+      "@directives/*": [ "app/core/directives/*" ]
     }
   },
   "angularCompilerOptions": {

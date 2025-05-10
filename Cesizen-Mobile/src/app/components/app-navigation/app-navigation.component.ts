@@ -12,6 +12,7 @@ import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-navigation',
+  standalone: true,
   templateUrl: './app-navigation.component.html',
   styleUrl: './app-navigation.component.scss',
   imports: [

@@ -1,1 +1,6 @@
-<app-navigation></app-navigation>
+<!-- <app-navigation></app-navigation> -->
+<main>
+    <router-outlet />
+</main>
+<!-- Show mobile nav only if screen width <= 700px -->
+<app-nav-mobile *ngIf="isMobileScreen"></app-nav-mobile>
