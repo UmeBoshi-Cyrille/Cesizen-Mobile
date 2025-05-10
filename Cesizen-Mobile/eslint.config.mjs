@@ -24,7 +24,6 @@ export default defineConfig([
       "jasmine/no-suite-dupes": ["error", "branch"]
     }
   },
-  { files: ["**/*.{js,mjs,cjs,ts}"] },
   {
     files: ["**/*.{js,mjs,cjs,ts}"],
     languageOptions: {
@@ -40,7 +39,8 @@ export default defineConfig([
     files: ["karma.conf.js"],
     rules: {
       "@typescript-eslint/no-require-imports": "off", // Allow require()
-      "no-undef": "off" // Skip undefined checks for Node.js globals
+      "no-undef": "off", // Skip undefined checks for Node.js globals
+      "@typescript-eslint/no-unused-vars": "off"
     }
   }
 ]);

@@ -1,0 +1,30 @@
+@import '../../abstract-styles/variables';
+
+.exercise-item {
+  flex: 1;
+  padding: 0 10px;
+}
+
+.exercise-item:last-child {
+  flex: none;
+}
+
+.play-arrow {
+  color: #2ecc40;
+  transform: scale(1.5);
+}
+
+.play-arrow:hover {
+  color: $primary-color;
+  cursor: pointer;
+  transform: scale(1.2);
+}
+
+.btn-play {
+  margin-right: 20px;
+}
+
+.delete:hover {
+  color: $primary-color;
+  cursor: pointer;
+}

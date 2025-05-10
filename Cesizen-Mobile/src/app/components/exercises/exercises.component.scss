@@ -1,0 +1,75 @@
+h2 {
+  font-family: Bitter;
+  font-size: 1.3rem;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+  margin-top: 1rem;
+}
+
+h3 {
+  font-size: 1.1rem;
+  font-weight: 400;
+  margin-bottom: 0.5rem;
+  margin-left: 0.5rem;
+}
+
+h4 {
+  font-size: 1rem;
+  font-weight: 500;
+  font-style: italic;
+  margin-bottom: 1.5rem;
+  margin-top: 1.5rem;
+  text-align: center;
+  line-height: 1.5;
+}
+
+p {
+  font-size: 1rem;
+  font-weight: 400;
+  margin-bottom: 0.5rem;
+  line-height: 1;
+  margin-left: 1rem;
+}
+
+.alphabet-ol {
+  list-style-type: upper-latin;
+  margin-left: 1rem;
+
+  li {
+    margin-left: 1rem;
+    line-height: 1.5;
+  }
+}
+
+.number-ol {
+  list-style-type: decimal;
+  margin-left: 2rem;
+  li {
+    margin-left: 1rem;
+    line-height: 1.5;
+  }
+}
+
+ul {
+  list-style-type: disc;
+  list-style: inside;
+  list-style-position: outside;
+  li {
+    margin-left: 5rem;
+    line-height: 1.5;
+  }
+}
+
+.btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@media(min-width: 700px){
+
+  .rythme-div, .chrono-div {
+    margin: 2rem;
+    align-items: center;
+  }
+}

@@ -1,0 +1,139 @@
+.article-container {
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    width: 100%;
+}
+
+.latest-articles {
+  width: 100%;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  padding-top: 20px;
+  border-radius: 20px, 5px;
+}
+
+.latestarticles-grid {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  grid-template-columns: auto auto auto auto;
+  grid-gap: 10px;
+  background-color: #ffeaa8;
+  height: 65vh;
+  width: 100%;
+  grid-auto-flow: column;
+  margin-top: 20px;
+  border-radius: 20px, 5px;
+
+  a {
+    text-decoration: none;
+  }
+}
+
+.cards-articles {
+  width: 15rem;
+  height: 17rem;
+  margin: auto;
+  border-radius: 7%;
+  position: relative;
+  overflow-wrap: break-word;
+  cursor: pointer;
+}
+
+.img-article {
+  width: 100%;
+  height: 100%;
+  border-radius: 7%;
+}
+
+.article-div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex-wrap: wrap;
+  align-items: center;
+  text-align: center;
+  font-style: italic;
+  position: absolute;
+  top: 0;
+  background: rgba(24, 24, 24);
+  opacity: 0.7;
+  color: white;
+  text-align: center;
+  border-radius: 2%;
+  padding: 1rem;
+  width: 100%;
+}
+
+.article-author {
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+.article-div:hover {
+  height: 100%;
+}
+
+.category-div {
+  margin-bottom: 4rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+
+
+.card-category {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 5px;
+  margin: 10px;
+  width: 14rem;
+  height: 18rem;
+  border-radius: 7%;
+  //background-color: #fffdf7;
+  border: solid 1px #abaaa7;
+  cursor: pointer; 
+}
+
+.img-card {
+  width: 90%;
+  height: 70%;
+  border: solid 1px #abaaa7;
+  border-radius: 7%;
+  margin-bottom: 20px;
+}
+
+.category-name-box {
+  text-align: center;
+  letter-spacing: 1px;
+  //background: rgba(24, 24, 24, 0.66);
+  border-radius: 2%;
+}
+
+.category-name {
+  color: black;
+  font-size: 1rem;
+  font-style: italic;
+  //text-align: center;
+  letter-spacing: 1px;
+  //background: rgba(24, 24, 24, 0.66);
+  border-radius: 2%;
+}
+
+@media(max-width: 1318px){
+  .latestarticles-grid {
+    background-color: white;
+    height: 80vh;
+  }
+}
+
+@media(max-width: 700px){
+  .latestarticles-grid {
+    height: auto;
+  }
+
+}
