@@ -1,3 +1,5 @@
+@use 'mixins';
+
 .container {
   height: 90vh;
 }
@@ -13,8 +15,7 @@
 }
 
 .avatar-container {
-  display: flex;
-  justify-content: center;
+  @include mixins.justify-center;
   margin-bottom: 16px;
 }
 
@@ -42,9 +43,8 @@ p {
 }
 
 .loading-container {
-  display: flex;
+  @include mixins.align-items-center;
   flex-direction: column;
-  align-items: center;
   padding: 40px 0;
 }
 
@@ -62,8 +62,7 @@ p {
 }
 
 .avatar-container {
-  display: flex;
-  justify-content: center;
+  @include mixins.justify-center;
   margin-bottom: 16px;
 }
 
@@ -93,16 +92,14 @@ input {
 }
 
 .edit-actions {
-  display: flex;
+  @include mixins.justify-center;
   gap: 12px;
-  justify-content: center;
   margin-top: 8px;
 }
 
 .loading-container {
-  display: flex;
+  @include mixins.align-items-center;
   flex-direction: column;
-  align-items: center;
   padding: 40px 0;
 }
 

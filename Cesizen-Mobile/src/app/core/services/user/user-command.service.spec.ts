@@ -1,18 +1,18 @@
 import { TestBed } from '@angular/core/testing';
 import { UserCommandService } from './user-command.service';
-import { provideHttpClient } from '@angular/common/http';
-import { provideHttpClientTesting } from '@angular/common/http/testing';
 
 describe('UserCommandService', () => {
   let service: UserCommandService;
 
   beforeEach(() => {
+    // Mock CapacitorHttp
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    (window as any).CapacitorHttp = {
+      get: jasmine.createSpy('get')
+    };
+
     TestBed.configureTestingModule({
-      providers: [
-        UserCommandService,
-        provideHttpClient(),
-        provideHttpClientTesting()
-      ]
+      providers: [UserCommandService]
 });
     service = TestBed.inject(UserCommandService);
   });

@@ -1,13 +1,14 @@
 /* You can add global styles to this file, and also import other style files */
-@import "tailwindcss";
-@import "app/abstract-styles/_mixins.scss";
+@use 'variables';
+@use 'mixins';
+@use "tailwindcss";
 
 * {
-  font-family: $font-primary;
+  font-family: variables.$font-primary;
 }
 
 .font-seconde {
-  font-family: $font-seconde;
+  font-family: variables.$font-seconde;
   //title, h1, etc..
 }
 
@@ -20,27 +21,27 @@ header {
 }
 
 main {
-  @include main-center;
+  @include mixins.main-center;
 }
 
 .main-content {
-  background-color: $secondary-color;
+  background-color: variables.$secondary-color;
   position: relative;
   top: 0;
 }
 
 //yellow-box
 .main-box {
-  @include main-center(12%, 100vh);
-  background-color: $secondary-color;
+  @include mixins.main-center(12%, 100vh);
+  background-color: variables.$secondary-color;
 }
 
 .h1-primary {
-  @include title-h1(2rem auto);
+  @include mixins.title-h1(2rem auto);
 }
 
 .h1-articles-title {
-  @include title-h1(1rem auto);
+  @include mixins.title-h1(1rem auto);
   width: 250px;
   background-color: white;
   position: absolute;
@@ -51,18 +52,18 @@ main {
 }
 
 .h1-form-title {
-  @include title-h1(1.2rem auto);
+  @include mixins.title-h1(1.2rem auto);
   font-size: 1.2rem;
 }
 
 .h1-articleByCategory-title {
-  @include title-h1(1.2rem auto);
+  @include mixins.title-h1(1.2rem auto);
   width: 250px;
   font-size: 1rem;
 }
 
 .box-div-article {
-  @include box-div;
+  @include mixins.box-div;
   width: 80%;
   min-height: 80vh;
 }
@@ -78,12 +79,12 @@ main {
 }
 
 .box-div-connexion {
-  @include box-div;
+  @include mixins.box-div;
 }
 
 .box-div {
-  @include box-div;
-  @include flex-center;
+  @include mixins.box-div;
+  @include mixins.flex-center;
 }
 
 .content-div {
@@ -115,61 +116,14 @@ main {
 
 
 .B-btn {
-  @include black-button;
+  @include mixins.black-button;
 }
 
-  .B-btn:hover {
-    background-color: $btn-hover-color;
-  }
-
-.toast {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  width: 350px;
-  min-height: 40px;
-  max-height: 100px; /* Set your desired maximum height */
-  overflow-y: auto;
-  word-break: break-word;
-  background-color: rgb(176, 252, 231, 0.3);
-  border: #287e5e dashed;
-  color: #287e5e;
-  padding: 10px 20px;
-  border-radius: 5px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-  transition: opacity 0.3s ease-in-out;
+.B-btn:hover {
+  background-color: variables.$btn-hover-color;
 }
 
-  .toast.success {
-    background-color: rgb(176, 252, 231, 0.5);
-    border: #287e5e dashed;
-    color: #287e5e;
-  }
 
-  .toast.error {
-    background-color: rgb(255, 197, 197, 0.50);
-    border: #cb5d52 dashed;
-    color: #cb5d52;
-  }
-
-  .toast.warning {
-    background-color: rgb(252, 220, 176, 0.50);
-    border: #de9f52 dashed;
-    color: #de9f52;
-  }
-
-.toast-title {
-  font-size: 3em;
-  font-weight: bold;
-  margin-bottom: 4px;
-  margin-bottom: 10px;
-  padding-bottom: 3px;
-  border-bottom: solid 1px
-}
-
-.toast-message {
-  font-size: 0.98em;
-}
 
 .custom-select-panel {
   background: #fff !important;
@@ -184,22 +138,17 @@ main {
   }
 
   .box-div {
-    @include box-div;
-    @include flex-center;
+    @include mixins.box-div;
+    @include mixins.flex-center;
     background-color: white;
     box-shadow: none;
     width: 100%;
   }
 
   .h1-form-title {
-    @include title-h1(1rem auto);
+    @include mixins.title-h1(1rem auto);
     font-size: 1rem;
     width: 200px;
-  }
-
-  .h1-articleByCategory-title {
-    width: 150px;
-    font-size: 0.7rem;
   }
 
   .box-div-connexion {
@@ -210,7 +159,7 @@ main {
 
 @media (max-width: 700px) {
   main {
-    @include main-center(auto, auto);
+    @include mixins.main-center(auto, auto);
     width: 100%;
     justify-content: center;
   }
@@ -231,10 +180,6 @@ main {
     border: none;
   }
 
-  footer {
-    display: none;
-  }
-
   .box-div-article {
     width: 100%;
     background-color: white;
@@ -251,26 +196,11 @@ main {
     border: solid 1px #abaaa7;
   }
 
-  .h1-articleByCategory-title {
-    width: 250px;
-    font-size: 1rem;
-  }
-
   .h1-form-title {
-    @include title-h1(1rem auto);
+    @include mixins.title-h1(1rem auto);
     font-size: 1rem;
     width: 180px;
   }
 
-  .exercise-row {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    padding: 5px;
-    margin-bottom: 7rem;
-    box-shadow: 0 2px 6px rgb(128, 128, 128);
-  }
+  
 }

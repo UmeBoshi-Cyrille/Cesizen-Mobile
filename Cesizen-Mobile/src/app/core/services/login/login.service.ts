@@ -1,12 +1,12 @@
-import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { catchError, map, Observable, throwError } from 'rxjs';
+import { catchError, from, map, Observable, throwError } from 'rxjs';
 import { UserDataStorage } from '@models/user/user-data-storage';
 import { LoginData } from '@models/login/login-data';
 import { environment } from '@environments/environment';
 import { UserData } from '@models/user/user-data';
 import { AuthenticationResponse } from '@models/login/authentication-response.interface';
 import { AuthService } from '../auth/auth.service';
+import { CapacitorHttp } from '@capacitor/core';
 
 @Injectable({
   providedIn: 'root'
@@ -17,36 +17,16 @@ export class LoginService {
   private readonly apiUrlInvalidateToken = environment.invalidateTokensUrl;
 
   constructor(
-    private http: HttpClient,
     private authService: AuthService,
   ) { }
 
   authenticate(authenticationData: LoginData): Observable<AuthenticationResponse> {
-    const result = this.http.post<{ user: UserData, isLoggedIn: boolean, tokenExpirationTime: number }>
-      (this.apiUrlAuthenticate, authenticationData, { withCredentials: true }).pipe(
-      map(data => new AuthenticationResponse(
-        new UserDataStorage(
-          data.user.id,
-          data.user.username,
-          data.user.createdAt,
-          data.user.isActive,
-          data.user.role
-        ),
-        data.isLoggedIn,
-        data.tokenExpirationTime
-      )),
-      catchError((error: HttpErrorResponse) => {
-          return throwError(() => error);
-      })
-    );
+    const url = this.apiUrlAuthenticate;
 
-    return result;
-  }
-
-  refreshToken(): Observable<AuthenticationResponse> {
-    const result = this.http.post<{ user: UserData, isLoggedIn: boolean, tokenExpirationTime: number }>
-      (this.apiUrlRefreshAccessToken, {}, { withCredentials: true }).pipe(
-        map(data => new AuthenticationResponse(
+    return from(CapacitorHttp.post({url, data: authenticationData})).pipe(
+      map(response => {
+        const data = response.data as { user: UserData, isLoggedIn: boolean, tokenExpirationTime: number };
+        return new AuthenticationResponse(
           new UserDataStorage(
             data.user.id,
             data.user.username,
@@ -56,13 +36,32 @@ export class LoginService {
           ),
           data.isLoggedIn,
           data.tokenExpirationTime
-      )),
-      catchError((error: HttpErrorResponse) => {
-        return throwError(() => error);
-      })
+        );
+      }),
+      catchError(error => throwError(() => error))
     );
+  }
 
-    return result;
+  refreshToken(): Observable<AuthenticationResponse> {
+    const url = this.apiUrlRefreshAccessToken;
+
+    return from(CapacitorHttp.post({url, data: {}})).pipe(
+      map(response => {
+        const data = response.data as { user: UserData, isLoggedIn: boolean, tokenExpirationTime: number };
+        return new AuthenticationResponse(
+          new UserDataStorage(
+            data.user.id,
+            data.user.username,
+            data.user.createdAt,
+            data.user.isActive,
+            data.user.role
+          ),
+          data.isLoggedIn,
+          data.tokenExpirationTime
+        );
+      }),
+      catchError(error => throwError(() => error))
+    );
   }
 
   logout() {
@@ -74,18 +73,12 @@ export class LoginService {
     //window.location.href = '/login';
   }
 
-  private setParams(email: string, token: string): HttpParams {
-    return new HttpParams()
-      .set('token', token)
-      .set('email', email);
-  }
-
   private invalidateToken(): Observable<unknown> {
+    const url = this.apiUrlInvalidateToken;
 
-    return this.http.post(this.apiUrlInvalidateToken, { withCredentials: true }).pipe(
-      catchError((error: HttpErrorResponse) => {
-        return throwError(() => error);
-      })
+    return from(CapacitorHttp.post({url, data: {}})).pipe(
+      map(response => response.data),
+      catchError(error => throwError(() => error))
     );
   }
 }

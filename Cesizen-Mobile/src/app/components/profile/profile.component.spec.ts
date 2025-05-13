@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ProfileComponent } from './profile.component';
-import { provideHttpClient } from '@angular/common/http';
-import { provideHttpClientTesting } from '@angular/common/http/testing';
 
 describe('ProfileComponent', () => {
   let component: ProfileComponent;
   let fixture: ComponentFixture<ProfileComponent>;
 
   beforeEach(async () => {
+    // Mock CapacitorHttp
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    (window as any).CapacitorHttp = {
+      get: jasmine.createSpy('get')
+    };
+
     await TestBed.configureTestingModule({
       imports: [ProfileComponent],
-      providers: [
-        provideHttpClient(),
-        provideHttpClientTesting()// Provide HttpClient
-      ],
     })
     .compileComponents();
 

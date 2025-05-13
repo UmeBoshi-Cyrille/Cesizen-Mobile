@@ -1,4 +1,4 @@
-@import "../../abstract-styles/mixins";
+@use 'mixins';
 
 .content {
     height: 100vh;
@@ -6,7 +6,7 @@
 
 .content,
 .info {
-    @include flex-center;
+    @include mixins.flex-center;
 }
 
 .info {

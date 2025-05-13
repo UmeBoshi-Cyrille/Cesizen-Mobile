@@ -1,20 +1,19 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { ExercisesListComponent } from './exercises-list.component';
-import { provideHttpClient } from '@angular/common/http';
-import { provideHttpClientTesting } from '@angular/common/http/testing';
 
 describe('ExercisesListComponent', () => {
   let component: ExercisesListComponent;
   let fixture: ComponentFixture<ExercisesListComponent>;
 
   beforeEach(async () => {
+    // Mock CapacitorHttp
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    (window as any).CapacitorHttp = {
+      get: jasmine.createSpy('get')
+    };
+
     await TestBed.configureTestingModule({
-      imports: [ExercisesListComponent],
-      providers: [
-        provideHttpClient(),
-        provideHttpClientTesting(),// Provide HttpClient
-      ],
+      imports: [ExercisesListComponent]
     })
     .compileComponents();
 

@@ -1,19 +1,19 @@
 import { TestBed } from '@angular/core/testing';
 import { UserQueryService } from './user-query.service';
-import { provideHttpClient } from '@angular/common/http';
-import { provideHttpClientTesting } from '@angular/common/http/testing';
 
 
 describe('UserQueryService', () => {
   let service: UserQueryService;
 
   beforeEach(() => {
+    // Mock CapacitorHttp
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    (window as any).CapacitorHttp = {
+      get: jasmine.createSpy('get')
+    };
+
     TestBed.configureTestingModule({
-      providers: [
-        UserQueryService,
-        provideHttpClient(),
-        provideHttpClientTesting()
-      ]
+      providers: [UserQueryService]
 });
     service = TestBed.inject(UserQueryService);
   });

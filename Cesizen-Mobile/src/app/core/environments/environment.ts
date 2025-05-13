@@ -1,7 +1,6 @@
 export const baseEnv = {
   production: false,
-  apiUrl: 'https://localhost:5001/api',
-  apiUrlshorten: 'https://localhost:5001',
+  apiUrl: 'https://10.0.2.2:7103/api',
   query: 'query',
   command: 'command',
   articles: 'articles',
@@ -33,7 +32,7 @@ export const environment = {
   articleGetLastUrl: `${baseEnv.apiUrl}/${baseEnv.articles}/${baseEnv.query}/index-last`,
   articleGetByCategoryUrl: `${baseEnv.apiUrl}/${baseEnv.articles}/${baseEnv.query}/index-by-category`,
   articleQueryUrl: `${baseEnv.apiUrl}/${baseEnv.articles}/${baseEnv.query}`,
-  imageDisplayUrl: `${baseEnv.apiUrlshorten}`,
+  imageDisplayUrl: `${baseEnv.apiUrl}`,
 
   categoryIndexUrl: `${baseEnv.apiUrl}/${baseEnv.categories}/${baseEnv.query}/index`,
   categorysQueryUrl: `${baseEnv.apiUrl}/${baseEnv.categories}/${baseEnv.query}`,

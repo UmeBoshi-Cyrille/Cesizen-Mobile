@@ -38,9 +38,35 @@
             </li>
         </ul>
         <div id="dropdownInformation"
+             *ngIf="!isLoggedIn"
              class="dropdown-menu"
              [ngStyle]="{ display: showDropdown ? 'block' : 'none' }">
-            <div class="text-center" *ngIf="isLoggedIn">
+            <ul class="nav-drop-ul" aria-labelledby="dropdownInformationButton">
+                <li class="nav-drop-li-1 nav-drop">
+                    <a class="nav-drop-link" routerLink="/about" routerLinkActive="active">
+                        <mat-icon class="face icon">face</mat-icon>
+                        A propos
+                    </a>
+                </li>
+                <li class="nav-drop-li-2 nav-drop">
+                    <a class="nav-drop-link" routerLink="/inscription" routerLinkActive="active">
+                        <mat-icon class="person icon">person</mat-icon>
+                        Inscription
+                    </a>
+                </li>
+                <li class="nav-drop-li-2 nav-drop">
+                    <a class="nav-drop-link" routerLink="'/se-connecter" routerLinkActive="active">
+                        <mat-icon class="person icon">person</mat-icon>
+                        Connexion
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div id="dropdownInformation"
+             *ngIf="isLoggedIn"
+             class="dropdown-menu"
+             [ngStyle]="{ display: showDropdown ? 'block' : 'none' }">
+            <div class="text-center">
                 <p class="font-seconde username">Bienvenue, {{ userData?.username }}</p>
             </div>
             <hr />
@@ -59,7 +85,6 @@
                 </li>
             </ul>
             <hr />
-
             <button class="nav-drop-btn" (click)="logout()" (keydown.enter)="logout()">Déconnexion</button>
         </div>
     </div>

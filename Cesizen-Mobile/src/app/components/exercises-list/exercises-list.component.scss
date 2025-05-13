@@ -1,4 +1,15 @@
-@import '../../abstract-styles/variables';
+@use 'variables';
+@use 'mixins';
+
+.exercise-row {
+  @include mixins.flex-center;
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 5px;
+  margin-bottom: 7rem;
+  box-shadow: 0 2px 6px rgb(128, 128, 128);
+}
 
 .exercise-item {
   flex: 1;
@@ -15,7 +26,7 @@
 }
 
 .play-arrow:hover {
-  color: $primary-color;
+  color: variables.$primary-color;
   cursor: pointer;
   transform: scale(1.2);
 }
@@ -25,6 +36,6 @@
 }
 
 .delete:hover {
-  color: $primary-color;
+  color: variables.$primary-color;
   cursor: pointer;
 }

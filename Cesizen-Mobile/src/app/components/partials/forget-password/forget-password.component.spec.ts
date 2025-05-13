@@ -1,19 +1,19 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ForgetPasswordComponent } from './forget-password.component';
-import { provideHttpClient } from '@angular/common/http';
-import { provideHttpClientTesting } from '@angular/common/http/testing';
 
 describe('ForgetPasswordComponent', () => {
   let component: ForgetPasswordComponent;
   let fixture: ComponentFixture<ForgetPasswordComponent>;
 
   beforeEach(async () => {
+    // Mock CapacitorHttp
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    (window as any).CapacitorHttp = {
+      get: jasmine.createSpy('get')
+    };
+
     await TestBed.configureTestingModule({
       imports: [ForgetPasswordComponent],
-      providers: [
-        provideHttpClient(),
-        provideHttpClientTesting()// Provide HttpClient
-      ],
     })
     .compileComponents();
 

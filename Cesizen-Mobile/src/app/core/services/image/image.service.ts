@@ -1,6 +1,5 @@
 import { ChangeDetectorRef, Injectable } from '@angular/core';
-import { Observable, throwError } from 'rxjs';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { Observable } from 'rxjs';
 import { environment } from '@environments/environment';
 
 @Injectable({
@@ -8,8 +7,6 @@ import { environment } from '@environments/environment';
 })
 export class ImageService {
   private readonly apiUrlGetUrlImage = `${environment.imageDisplayUrl}/assets/img`;
-
-  constructor(private http: HttpClient) { }
 
   getImageUrl(filename: string): string {
     return `${this.apiUrlGetUrlImage}/${filename}`;
@@ -50,16 +47,16 @@ export class ImageService {
     });
   }
 
-  private handleError(error: HttpErrorResponse) {
-    let msg = 'An unknown error occurred!';
-    if (error.error instanceof ErrorEvent) {
-      // Client-side error
-      msg = `Error: ${error.error.message}`;
-    } else if (error.status === 400) {
-      msg = 'Invalid request or file.';
-    } else if (error.status === 500) {
-      msg = 'Server error during upload.';
-    }
-    return throwError(() => new Error(msg));
-  }
+  //private handleError(error: HttpErrorResponse) {
+  //  let msg = 'An unknown error occurred!';
+  //  if (error.error instanceof ErrorEvent) {
+  //    // Client-side error
+  //    msg = `Error: ${error.error.message}`;
+  //  } else if (error.status === 400) {
+  //    msg = 'Invalid request or file.';
+  //  } else if (error.status === 500) {
+  //    msg = 'Server error during upload.';
+  //  }
+  //  return throwError(() => new Error(msg));
+  //}
 }

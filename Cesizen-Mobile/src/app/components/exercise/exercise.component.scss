@@ -1,4 +1,4 @@
-@import '../../abstract-styles/variables';
+@use 'variables';
 
 .row {
   display: flex;
@@ -18,7 +18,7 @@
 }
 
 .play-arrow:hover {
-  color: $primary-color;
+  color: variables.$primary-color;
   cursor: pointer;
   transform: scale(1.2);
 }

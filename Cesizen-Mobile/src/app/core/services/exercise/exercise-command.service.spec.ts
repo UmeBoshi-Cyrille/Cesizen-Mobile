@@ -1,18 +1,19 @@
 import { TestBed } from '@angular/core/testing';
-import { provideHttpClient } from '@angular/common/http';
 import { ExerciseCommandService } from './exercise-command.service';
-import { provideHttpClientTesting } from '@angular/common/http/testing';
 
 
 describe('ExerciseCommandService', () => {
   let service: ExerciseCommandService;
 
   beforeEach(() => {
+    // Mock CapacitorHttp
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    (window as any).CapacitorHttp = {
+      get: jasmine.createSpy('get')
+    };
+
     TestBed.configureTestingModule({
-      providers: [
-        provideHttpClient(),
-        provideHttpClientTesting(),
-      ]
+      providers: [ExerciseCommandService]
     });
     service = TestBed.inject(ExerciseCommandService);
   });

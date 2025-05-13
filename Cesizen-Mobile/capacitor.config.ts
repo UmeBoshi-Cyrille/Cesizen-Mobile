@@ -9,7 +9,8 @@ const config: CapacitorConfig = {
     iosScheme: 'https'
   },
   plugins: {
-    CapacitorCookies: { enabled: true }
+    CapacitorCookies: { enabled: true },
+    CapacitorHttp: { enabled: true }
   }
 };
 

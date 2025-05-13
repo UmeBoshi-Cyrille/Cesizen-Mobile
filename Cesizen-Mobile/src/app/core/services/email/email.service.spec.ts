@@ -1,17 +1,19 @@
 import { TestBed } from '@angular/core/testing';
 import { EmailService } from './email.service';
-import { provideHttpClient } from '@angular/common/http';
-import { provideHttpClientTesting } from '@angular/common/http/testing';
 
 describe('EmailService', () => {
   let service: EmailService;
 
   beforeEach(() => {
+    // Mock CapacitorHttp
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    (window as any).CapacitorHttp = {
+      get: jasmine.createSpy('get')
+    };
+
     TestBed.configureTestingModule({
       providers: [
-        EmailService,
-        provideHttpClient(),
-        provideHttpClientTesting()
+        EmailService
       ]
     });
     service = TestBed.inject(EmailService);

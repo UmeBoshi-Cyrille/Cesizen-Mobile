@@ -1,8 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ExerciseFormComponent } from './exercise-form.component';
-import { provideHttpClient } from '@angular/common/http';
 import { ExerciseCommandService } from '@services/exercise/exercise-command.service';
-import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { provideRouter } from '@angular/router';
 
 describe('ExerciseFormComponent', () => {
@@ -10,12 +8,16 @@ describe('ExerciseFormComponent', () => {
   let fixture: ComponentFixture<ExerciseFormComponent>;
 
   beforeEach(async () => {
+    // Mock CapacitorHttp
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    (window as any).CapacitorHttp = {
+      get: jasmine.createSpy('get')
+    };
+
     await TestBed.configureTestingModule({
       imports: [ExerciseFormComponent],
       providers: [
         provideRouter([]),
-        provideHttpClient(),
-        provideHttpClientTesting(),// Provide HttpClient
         ExerciseCommandService, // Provide any services used by the component
       ],
     })

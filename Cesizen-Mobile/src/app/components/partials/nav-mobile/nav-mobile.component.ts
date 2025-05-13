@@ -22,6 +22,7 @@ import { UserDataStorage } from '@models/user/user-data-storage';
 export class NavMobileComponent {
   userData: UserDataStorage | null = null;
   showDropdown = false;
+  isLoggedIn = false;
 
   toggleDropdown() {
     this.showDropdown = !this.showDropdown;
@@ -34,7 +35,7 @@ export class NavMobileComponent {
       this.showDropdown = false;
     }
   }
-  isLoggedIn = false;
+  
   constructor(
     private route: RouterModule
   ) {

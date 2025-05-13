@@ -1,8 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { EmailVerifiedComponent } from './email-verified.component';
-import { provideHttpClient } from '@angular/common/http';
-import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { provideRouter } from '@angular/router';
 
 describe('EmailVerifiedComponent', () => {
@@ -10,12 +8,16 @@ describe('EmailVerifiedComponent', () => {
   let fixture: ComponentFixture<EmailVerifiedComponent>;
 
   beforeEach(async () => {
+    // Mock CapacitorHttp
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    (window as any).CapacitorHttp = {
+      get: jasmine.createSpy('get')
+    };
+
     await TestBed.configureTestingModule({
       imports: [EmailVerifiedComponent],
       providers: [
-        provideRouter([]),
-        provideHttpClient(),
-        provideHttpClientTesting()// Provide HttpClient
+        provideRouter([])
       ],
     })
     .compileComponents();

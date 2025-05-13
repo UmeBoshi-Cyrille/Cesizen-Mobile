@@ -1,18 +1,18 @@
 import { TestBed } from '@angular/core/testing';
 import { LoginComponent } from './login.component';
-import { provideHttpClient } from '@angular/common/http';
 import { LoginService } from '@services/login/login.service';
-import { provideHttpClientTesting } from '@angular/common/http/testing';
 
 describe('SeConnecterComponent', () => {
   beforeEach(async () => {
+    // Mock CapacitorHttp
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    (window as any).CapacitorHttp = {
+      get: jasmine.createSpy('get')
+    };
+
     await TestBed.configureTestingModule({
       imports: [LoginComponent],
-      providers: [
-        provideHttpClient(),
-        provideHttpClientTesting(),// Provide HttpClient
-        LoginService, // Provide any services used by the component
-      ],
+      providers: [LoginService],
     })
       .compileComponents();
   });

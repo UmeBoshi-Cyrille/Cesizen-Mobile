@@ -1,7 +1,7 @@
-import { HttpClient, HttpErrorResponse, HttpParams, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { catchError, Observable, throwError } from 'rxjs';
+import { catchError, from, map, Observable, throwError } from 'rxjs';
 import { environment } from '@environments/environment';
+import { CapacitorHttp } from '@capacitor/core';
 
 @Injectable({
   providedIn: 'root'
@@ -10,32 +10,30 @@ export class EmailService {
   private readonly apiUrlVerifyEmail = environment.verifyEmailUrl;
   private readonly apiUrlResendEmailVerification = environment.resendEmailVerificationUrl;
 
-  constructor(private http: HttpClient) { }
-
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  verifyEmail(email: string, token: string): Observable<HttpResponse<any>> {
-    const params = this.setParams(email, token);
+  verifyEmail(email: string, token: string): Observable<any> {
+    const url = this.apiUrlVerifyEmail;
+    const params = {
+      email: email,
+      token: token
+    };
 
-    return this.http.post(this.apiUrlVerifyEmail, null, { params, observe: 'response', withCredentials: true }).pipe(
-      catchError((error: HttpErrorResponse) => {
-        return throwError(() => error);
-      })
+    return from(CapacitorHttp.post({url,params,data: null})).pipe(
+      map(response => response), 
+      catchError((error) => throwError(() => error))
     );
   }
 
   resendVerifyEmail(email: string, token: string): Observable<unknown> {
-    const params = this.setParams(email, token);
+    const url = this.apiUrlResendEmailVerification;
+    const params = {
+      email: email,
+      token: token
+    };
 
-    return this.http.post(this.apiUrlResendEmailVerification, { params, withCredentials: true }).pipe(
-      catchError((error: HttpErrorResponse) => {
-        return throwError(() => error);
-      })
+    return from(CapacitorHttp.post({ url, params })).pipe(
+      map(response => response),
+      catchError((error) => throwError(() => error))
     );
-  }
-
-  private setParams(email: string, token: string): HttpParams {
-    return new HttpParams()
-      .set('token', token)
-      .set('email', email);
   }
 }

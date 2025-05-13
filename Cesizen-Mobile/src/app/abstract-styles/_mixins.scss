@@ -1,4 +1,4 @@
-@import "variables";
+@use 'variables';
 
 //WHITE-BOX
 @mixin box-div {
@@ -18,10 +18,20 @@
   align-items: center;
 }
 
+@mixin justify-center {
+  display: flex;
+  justify-content: center;
+}
+
+@mixin align-items-center {
+  display: flex;
+  align-items: center;
+}
+
 @mixin title-h1($margin) {
   width: 300px;
   color: #2a2a2a;
-  font-family: $font-seconde;
+  font-family: variables.$font-seconde;
   font-style: italic;
   font-size: 1.5rem;
   font-weight: 500;
@@ -69,7 +79,7 @@
 @mixin black-button {
   font-size: 1rem;
   cursor: pointer;
-  background-color: $black-color;
+  background-color: variables.$black-color;
   color: white;
   padding: 10px 30px;
   border: none;

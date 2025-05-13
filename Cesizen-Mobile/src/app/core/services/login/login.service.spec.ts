@@ -1,18 +1,18 @@
 import { TestBed } from '@angular/core/testing';
 import { LoginService } from './login.service';
-import { provideHttpClient } from '@angular/common/http';
-import { provideHttpClientTesting } from '@angular/common/http/testing';
 
 describe('LoginService', () => {
   let service: LoginService;
 
   beforeEach(() => {
+    // Mock CapacitorHttp
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    (window as any).CapacitorHttp = {
+      get: jasmine.createSpy('get')
+    };
+
     TestBed.configureTestingModule({
-      providers: [
-        LoginService,
-        provideHttpClient(),
-        provideHttpClientTesting()
-      ]
+      providers: [LoginService]
     });
     service = TestBed.inject(LoginService);
   });

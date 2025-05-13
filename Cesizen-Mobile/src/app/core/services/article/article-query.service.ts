@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
-import { Observable, map } from 'rxjs';
+import { CapacitorHttp } from '@capacitor/core';
+import { from, Observable, map } from 'rxjs';
 import { Article } from '@models/article/article';
 import { environment } from '@environments/environment';
 import { PaginationData } from '@models/pagination/pagination-data.interface';
@@ -15,48 +15,69 @@ export class ArticleQueryService {
   private apiUrlIndex = environment.articleIndexUrl;
   private readonly apiUrlByCategory = environment.articleGetByCategoryUrl;
   private readonly apiUrlDetails = environment.articleQueryUrl;
-  constructor(private http: HttpClient) { }
-
+ 
   getAllArticles(
     pageNumber: number,
-    pageSize: number): Observable<PaginationData<ArticleMinimumDto>> {
+    pageSize: number
+  ): Observable<PaginationData<ArticleMinimumDto>> {
+    const url = this.apiUrlIndex;
+    const params = {
+      pageNumber: pageNumber.toString(),
+      pageSize: pageSize.toString()
+    };
 
-    const params = new HttpParams()
-      .set('pageNumber', pageNumber.toString())
-      .set('pageSize', pageSize.toString());
-
-    return this.http.get<{ value: PaginationData<ArticleMinimumDto> }>(this.apiUrlIndex, { params }).pipe(
-      map(response => ({
-        data: response.value.data as ArticleMinimumDto[],
-        pageNumber: response.value.pageNumber,
-        pageSize: response.value.pageSize,
-        totalCount: response.value.totalCount
-      }))
+    //Use from() to convert the Promise returned by Capacitor HTTP to an Observable so your Angular code stays consistent.
+    return from(
+      CapacitorHttp.get({
+        url, params
+      })
+    ).pipe(
+      map(response => {
+        const value = response.data.value;
+        return {
+          data: value.data as ArticleMinimumDto[],
+          pageNumber: value.pageNumber,
+          pageSize: value.pageSize,
+          totalCount: value.totalCount
+        };
+      })
     );
   }
 
+
   getLimitArticles(amount: number, limit = 4): Observable<Article[]> {
-    const params = new HttpParams().set('amount', amount.toString());
-    return this.http.get<{ value: Article[] }>(this.apiUrlLast, { params }).pipe(
-      map((response) => response.value
-        .sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
-        .slice(0, limit)));
+    const url = this.apiUrlLast;
+    const params = { amount: amount.toString() };
+
+    return from(
+      CapacitorHttp.get({ url, params })
+    ).pipe(
+      map((response) => {
+        const articles = response.data.value as Article[];
+        return articles
+          .sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
+          .slice(0, limit);
+      })
+    );
   }
 
   getArticleDetails(id: number): Observable<Article> {
     const url = `${this.apiUrlDetails}/${id}/details`;
-    return this.http.get<{ value: Article }> (url).pipe(
-    map((response) => response.value));
+
+    return from(CapacitorHttp.get({ url })).pipe(
+      map(response => response.data.value as Article)
+    );
   }
 
   article: Article | null = null; // Define a property to store the article data
 
   DisplayConsole(id: number): void {
     const url = `${this.apiUrlDetails}/${id}/details`;
-    this.http.get<Article>(url).subscribe({
-      next: (data) => {
-      this.article = data; // Store the API response in the component property
-      console.log(data); // Optional: Log the data for debugging
+
+    from(CapacitorHttp.get({ url })).subscribe({
+      next: (response) => {
+        this.article = response.data as Article; // Store the API response in the component property
+        console.log(response); // Optional: Log the data for debugging
     },
       error: (error) => {
         console.error('Error fetching article:', error); // Handle errors
@@ -67,21 +88,25 @@ export class ArticleQueryService {
   getArticlesByCategory(
     categoryId: number,
     pageNumber: number,
-    pageSize: number): Observable<PaginationData<ArticleDto>> {
-    const params = new HttpParams()
-      .set('categoryId', categoryId.toString())
-      .set('pageNumber', pageNumber.toString())
-      .set('pageSize', pageSize.toString());
+    pageSize: number
+  ): Observable<PaginationData<ArticleDto>> {
+    const url = this.apiUrlByCategory;
+    const params = {
+      categoryId: categoryId.toString(),
+      pageNumber: pageNumber.toString(),
+      pageSize: pageSize.toString()
+    };
 
-    const result = this.http.get <{ value: PaginationData<ArticleDto> } >(this.apiUrlByCategory, { params }).pipe(
-      map(response => ({
-        data: response.value.data as ArticleDto[],
-        pageNumber: response.value.pageNumber,
-        pageSize: response.value.pageSize,
-        totalCount: response.value.totalCount
-      }))
+    return from(CapacitorHttp.get({ url, params })).pipe(
+      map(response => {
+        const value = response.data.value;
+        return {
+          data: value.data as ArticleDto[],
+          pageNumber: value.pageNumber,
+          pageSize: value.pageSize,
+          totalCount: value.totalCount
+        };
+      })
     );
-
-    return result;
   }
 }
